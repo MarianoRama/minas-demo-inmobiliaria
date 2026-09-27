@@ -21,12 +21,12 @@ function Wordmark({ nombre }: { nombre: string }) {
 }
 
 export function LogoStrip() {
-  const reveal = useReveal<HTMLDivElement>()
+  const { nodeRef, className, style } = useReveal<HTMLDivElement>()
   const fila = [...aliados, ...aliados]
 
   return (
     <section aria-labelledby="aliados-titulo" className="border-y border-piedra-200 bg-piedra-100/60 py-12 sm:py-14">
-      <div ref={reveal.nodeRef} className={reveal.className} style={reveal.style}>
+      <div ref={nodeRef} className={className} style={style}>
         <p
           id="aliados-titulo"
           className="mx-auto max-w-6xl px-4 text-center text-xs font-semibold uppercase tracking-[0.24em] text-piedra-700 sm:px-6 sm:text-left"

@@ -20,11 +20,11 @@ const testimonios = [
 ]
 
 export function Testimonios() {
-  const reveal = useReveal<HTMLDivElement>()
+  const { nodeRef, className, style } = useReveal<HTMLDivElement>()
 
   return (
     <section aria-labelledby="testimonios-titulo" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-      <div ref={reveal.nodeRef} className={reveal.className} style={reveal.style}>
+      <div ref={nodeRef} className={className} style={style}>
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brasa-500">Clientes</p>
         <h2 id="testimonios-titulo" className="mt-2 max-w-xl font-display text-3xl text-tinta-900 sm:text-4xl">
           Lo que cuentan quienes ya operaron con nosotros

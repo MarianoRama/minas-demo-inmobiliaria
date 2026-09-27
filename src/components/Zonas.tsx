@@ -20,14 +20,14 @@ const zonas = [
 ]
 
 export function Zonas() {
-  const reveal = useReveal<HTMLDivElement>()
+  const { nodeRef, className, style } = useReveal<HTMLDivElement>()
 
   return (
     <section id="zonas" className="border-y border-piedra-200 bg-piedra-100/50">
       <div
-        ref={reveal.nodeRef}
-        className={`${reveal.className} mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1fr_1fr] lg:items-start`}
-        style={reveal.style}
+        ref={nodeRef}
+        className={`${className} mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1fr_1fr] lg:items-start`}
+        style={style}
       >
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brasa-500">Cobertura</p>

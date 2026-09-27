@@ -21,21 +21,3 @@ export function SierraMark({ className = 'h-10 w-10' }: { className?: string }) 
     </svg>
   )
 }
-
-/** Silueta panorámica de sierra, para fondos de sección (decorativa). */
-export function SierraPanorama({ className = 'w-full h-auto' }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 480 220" className={className} aria-hidden="true" preserveAspectRatio="none">
-      <path
-        d="M0 170 L60 120 L110 150 L160 90 L210 150 L260 100 L320 160 L360 110 L420 150 L480 130 L480 220 L0 220 Z"
-        fill="var(--color-sierra-700)"
-        opacity="0.9"
-      />
-      <path
-        d="M0 190 L70 150 L130 175 L190 130 L250 175 L310 140 L380 180 L480 160 L480 220 L0 220 Z"
-        fill="var(--color-sierra-800)"
-      />
-      <circle cx="410" cy="46" r="26" fill="var(--color-piedra-200)" opacity="0.9" />
-    </svg>
-  )
-}

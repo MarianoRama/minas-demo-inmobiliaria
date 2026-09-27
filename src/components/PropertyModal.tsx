@@ -74,7 +74,7 @@ export function PropertyModal({ propiedad, onCerrar }: Props) {
           {propiedad.foto ? (
             <img src={propiedad.foto} alt={propiedad.titulo} className="h-full w-full object-cover" />
           ) : (
-            <PropertyArt tipo={propiedad.tipo} className="h-full w-full" />
+            <PropertyArt tipo={propiedad.tipo} id={propiedad.id} className="h-full w-full" />
           )}
           <button
             ref={cerrarRef}

@@ -4,8 +4,11 @@ import { useFavoritos } from '../hooks/useFavoritos'
 import { useReveal } from '../hooks/useReveal'
 import { cumpleRango, rangosPrecio } from '../lib/precio'
 import type { TipoOperacion, TipoPropiedad } from '../types'
+import { FeaturedProperty } from './FeaturedProperty'
 import { PropertyCard } from './PropertyCard'
 import { PropertyModal } from './PropertyModal'
+
+const propiedadDestacada = propiedades.find((p) => p.id === 8) ?? propiedades[0]
 
 type FiltroOperacion = 'Todas' | TipoOperacion
 type FiltroTipo = 'Todos' | TipoPropiedad
@@ -25,7 +28,7 @@ export function Properties() {
   const [seleccionada, setSeleccionada] = useState<(typeof propiedades)[number] | null>(null)
 
   const { favoritos, alternar, esFavorito } = useFavoritos()
-  const cabecera = useReveal<HTMLDivElement>()
+  const { nodeRef, className, style } = useReveal<HTMLDivElement>()
 
   const rango = rangosPrecio.find((r) => r.id === rangoId) ?? rangosPrecio[0]
 
@@ -44,7 +47,7 @@ export function Properties() {
 
   return (
     <section id="propiedades" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-      <div ref={cabecera.nodeRef} className={cabecera.className} style={cabecera.style}>
+      <div ref={nodeRef} className={className} style={style}>
         <div className="mb-10 max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brasa-500">Cartera actual</p>
           <h2 className="mt-2 font-display text-3xl text-tinta-900 sm:text-4xl">Propiedades disponibles</h2>
@@ -119,8 +122,10 @@ export function Properties() {
         </div>
       </div>
 
+      <FeaturedProperty propiedad={propiedadDestacada} onAbrir={setSeleccionada} />
+
       {filtradas.length > 0 ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-testid="grilla-propiedades">
           {filtradas.map((p, i) => (
             <PropertyCard
               key={p.id}

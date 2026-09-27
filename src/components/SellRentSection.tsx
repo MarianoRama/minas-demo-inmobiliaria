@@ -2,14 +2,14 @@ import { useReveal } from '../hooks/useReveal'
 import { SellRentForm } from './SellRentForm'
 
 export function SellRentSection() {
-  const reveal = useReveal<HTMLDivElement>()
+  const { nodeRef, className, style } = useReveal<HTMLDivElement>()
 
   return (
     <section id="tasaciones" className="bg-piedra-50">
       <div
-        ref={reveal.nodeRef}
-        className={`${reveal.className} mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[0.9fr_1.1fr] lg:items-start`}
-        style={reveal.style}
+        ref={nodeRef}
+        className={`${className} mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[0.9fr_1.1fr] lg:items-start`}
+        style={style}
       >
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brasa-500">Tasaciones</p>

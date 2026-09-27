@@ -13,14 +13,14 @@ interface Props {
 }
 
 export function PropertyCard({ propiedad, esFavorito, onAlternarFavorito, onAbrir, retrasoMs = 0 }: Props) {
-  const reveal = useReveal<HTMLDivElement>(retrasoMs)
+  const { nodeRef, className, style } = useReveal<HTMLDivElement>(retrasoMs)
   const badgeColor =
     propiedad.operacion === 'Venta' ? 'bg-sierra-700 text-piedra-50' : 'bg-brasa-500 text-piedra-50'
 
   const mensajeVisita = `Hola! Quiero coordinar una visita a la propiedad ${propiedad.referencia} — ${propiedad.titulo} (${propiedad.zona}). ¿Tenés disponibilidad esta semana?`
 
   return (
-    <div ref={reveal.nodeRef} className={reveal.className} style={reveal.style}>
+    <div ref={nodeRef} className={className} style={style}>
       <article className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-piedra-200 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-tinta-900/10">
         <button
           type="button"
@@ -38,7 +38,7 @@ export function PropertyCard({ propiedad, esFavorito, onAlternarFavorito, onAbri
               />
             ) : (
               <div className="h-full w-full transition-transform duration-500 ease-out group-hover:scale-105">
-                <PropertyArt tipo={propiedad.tipo} className="h-full w-full" />
+                <PropertyArt tipo={propiedad.tipo} id={propiedad.id} className="h-full w-full" />
               </div>
             )}
             <span className={`absolute left-3 top-3 rounded-sm px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${badgeColor}`}>
