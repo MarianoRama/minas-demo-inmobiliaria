@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Segoe UI', system-ui, Roboto, sans-serif;
+  --font-heading: 'Georgia', 'Times New Roman', serif;
+
+  --color-oliva-50: #f6f7f2;
+  --color-oliva-100: #e8ebdd;
+  --color-oliva-200: #d3d9bc;
+  --color-oliva-300: #b6c090;
+  --color-oliva-400: #9aa66b;
+  --color-oliva-500: #7c8a4e;
+  --color-oliva-600: #626f3d;
+  --color-oliva-700: #4d5731;
+  --color-oliva-800: #40482c;
+  --color-oliva-900: #383e29;
+
+  --color-arena-50: #fdfbf6;
+  --color-arena-100: #f8f3e7;
+  --color-arena-200: #efe4cc;
+  --color-arena-300: #e2cea3;
+  --color-arena-400: #d3b378;
+  --color-arena-500: #c49a56;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-arena-50);
+}
