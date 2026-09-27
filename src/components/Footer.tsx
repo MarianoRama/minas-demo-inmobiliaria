@@ -1,37 +1,61 @@
+import { AUTOR, NEGOCIO } from '../config'
+import { SierraMark } from './illustrations/SierraMark'
+
 export function Footer() {
   return (
-    <footer id="contacto" className="bg-oliva-900 text-arena-100">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12 grid gap-10 sm:grid-cols-3">
+    <footer id="contacto" className="bg-sierra-900 text-piedra-200">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 sm:py-16 sm:grid-cols-3">
         <div>
-          <p className="font-heading text-xl text-arena-50 mb-2">Cerro del Pintado</p>
-          <p className="text-sm text-arena-200">
-            Inmobiliaria ficticia de ejemplo — Minas, Uruguay. Este sitio es una demo de
+          <div className="flex items-center gap-2.5">
+            <SierraMark className="h-9 w-9" />
+            <p className="font-display text-xl text-piedra-50">{NEGOCIO.nombre}</p>
+          </div>
+          <p className="mt-3 text-sm text-piedra-300">
+            Inmobiliaria ficticia de ejemplo en Minas, Uruguay. Este sitio es una demo de
             portafolio y no corresponde a una empresa real.
           </p>
         </div>
 
         <div>
-          <p className="font-semibold text-arena-50 mb-2">Contacto</p>
-          <ul className="space-y-1 text-sm text-arena-200">
-            <li>Calle Ficticia 123, Minas, Lavalleja</li>
-            <li>Tel/WhatsApp: +598 99 000 000 (ejemplo)</li>
-            <li>contacto@cerrodelpintado-demo.uy</li>
+          <p className="mb-2 font-semibold text-piedra-50">Contacto</p>
+          <ul className="space-y-1.5 text-sm text-piedra-300">
+            <li>{NEGOCIO.direccion}</li>
+            <li>WhatsApp: {NEGOCIO.whatsapp} (ejemplo)</li>
+            <li>Tel. fijo: {NEGOCIO.telefonoFijo}</li>
+            <li>{NEGOCIO.email}</li>
+            <li className="pt-1 text-piedra-400">{NEGOCIO.horario}</li>
           </ul>
         </div>
 
         <div>
-          <p className="font-semibold text-arena-50 mb-2">Enlaces</p>
-          <ul className="space-y-1 text-sm text-arena-200">
-            <li><a href="#inicio" className="hover:text-arena-50">Inicio</a></li>
-            <li><a href="#propiedades" className="hover:text-arena-50">Propiedades</a></li>
-            <li><a href="#vender-alquilar" className="hover:text-arena-50">Vender/Alquilar</a></li>
+          <p className="mb-2 font-semibold text-piedra-50">Enlaces</p>
+          <ul className="space-y-1.5 text-sm text-piedra-300">
+            <li><a href="#inicio" className="foco-visible hover:text-piedra-50">Inicio</a></li>
+            <li><a href="#propiedades" className="foco-visible hover:text-piedra-50">Propiedades</a></li>
+            <li><a href="#zonas" className="foco-visible hover:text-piedra-50">Zonas</a></li>
+            <li><a href="#tasaciones" className="foco-visible hover:text-piedra-50">Tasamos tu propiedad</a></li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-oliva-700/60 py-4 text-center text-xs text-arena-300">
-        © {new Date().getFullYear()} Cerro del Pintado — Sitio demo de portafolio, datos e
-        imágenes ficticios.
+      <div className="border-t border-piedra-100/10 py-5">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-4 text-center text-xs text-piedra-400 sm:flex-row sm:justify-between sm:px-6 sm:text-left">
+          <p>
+            © {new Date().getFullYear()} {NEGOCIO.nombre} — Sitio demo de portafolio, datos e
+            ilustraciones ficticios.
+          </p>
+          <p>
+            Sitio demo por {AUTOR.nombre} — ¿querés una página así para tu negocio?{' '}
+            <a
+              href={`https://wa.me/${AUTOR.whatsapp}?text=${encodeURIComponent(`Hola ${AUTOR.nombre}! Vi la demo de inmobiliaria y quiero una página así para mi negocio.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="foco-visible font-semibold text-piedra-200 underline underline-offset-4 hover:text-piedra-50"
+            >
+              Escribime
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   )

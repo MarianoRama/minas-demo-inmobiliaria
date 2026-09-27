@@ -1,33 +1,49 @@
+import { CheckCircle2 } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
+import { linkWhatsApp } from '../lib/whatsapp'
 
 export function SellRentForm() {
-  const [enviado, setEnviado] = useState(false)
   const [tipo, setTipo] = useState('Casa')
+  const [operacion, setOperacion] = useState('Vender')
   const [zona, setZona] = useState('')
+  const [nombre, setNombre] = useState('')
   const [telefono, setTelefono] = useState('')
+  const [link, setLink] = useState<string | null>(null)
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    // Demo sin backend: solo mostramos confirmación.
-    setEnviado(true)
+    const mensaje = `Hola! Soy ${nombre} y quiero ${operacion === 'Vender' ? 'vender' : 'alquilar'} un/a ${tipo.toLowerCase()} en zona ${zona}. Mi teléfono es ${telefono}. ¿Me pueden ayudar con una tasación?`
+    const url = linkWhatsApp(mensaje)
+    setLink(url)
+    window.open(url, '_blank', 'noopener,noreferrer')
   }
 
-  if (enviado) {
+  if (link) {
     return (
-      <div className="rounded-xl border border-oliva-300 bg-oliva-50 p-8 text-center">
-        <p className="text-2xl mb-2">✅</p>
-        <h3 className="font-heading text-xl text-oliva-900 mb-2">¡Gracias por tu consulta!</h3>
-        <p className="text-oliva-700">
-          Esto es una demo: en un sitio real, un asesor de Cerro del Pintado se contactaría con vos
-          a la brevedad.
+      <div className="rounded-lg border border-sierra-200 bg-sierra-50 p-8 text-center">
+        <CheckCircle2 className="mx-auto h-10 w-10 text-sierra-600" aria-hidden="true" />
+        <h3 className="mt-3 font-display text-xl text-tinta-900">Abrimos WhatsApp con tu mensaje</h3>
+        <p className="mt-2 text-sm text-tinta-700/80">
+          Si no se abrió automáticamente, tocá el enlace de abajo. Esto es una demo: no se guarda
+          ni se envía ningún dato a un servidor.
         </p>
-        <button
-          type="button"
-          onClick={() => setEnviado(false)}
-          className="mt-4 text-sm font-semibold text-oliva-700 underline"
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="foco-visible mt-4 inline-flex min-h-[44px] items-center justify-center rounded-md bg-sierra-700 px-5 text-sm font-semibold text-piedra-50 hover:bg-sierra-600"
         >
-          Enviar otra consulta
-        </button>
+          Abrir WhatsApp
+        </a>
+        <div>
+          <button
+            type="button"
+            onClick={() => setLink(null)}
+            className="foco-visible mt-4 text-sm font-semibold text-tinta-700 underline underline-offset-4"
+          >
+            Cargar otra consulta
+          </button>
+        </div>
       </div>
     )
   }
@@ -35,24 +51,40 @@ export function SellRentForm() {
   return (
     <form onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="tipo" className="text-sm font-medium text-oliva-800">
+        <label htmlFor="operacion" className="text-sm font-medium text-tinta-800">
+          Quiero
+        </label>
+        <select
+          id="operacion"
+          value={operacion}
+          onChange={(e) => setOperacion(e.target.value)}
+          className="foco-visible rounded-md border border-piedra-300 bg-white px-3 py-2.5 text-tinta-900"
+        >
+          <option>Vender</option>
+          <option>Alquilar</option>
+        </select>
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="tipo" className="text-sm font-medium text-tinta-800">
           Tipo de propiedad
         </label>
         <select
           id="tipo"
           value={tipo}
           onChange={(e) => setTipo(e.target.value)}
-          className="rounded-md border border-oliva-300 bg-white px-3 py-2.5 text-oliva-900 focus:outline-none focus:ring-2 focus:ring-oliva-500"
+          className="foco-visible rounded-md border border-piedra-300 bg-white px-3 py-2.5 text-tinta-900"
         >
           <option>Casa</option>
           <option>Apartamento</option>
           <option>Terreno</option>
+          <option>Chacra</option>
           <option>Local comercial</option>
         </select>
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="zona" className="text-sm font-medium text-oliva-800">
+        <label htmlFor="zona" className="text-sm font-medium text-tinta-800">
           Zona
         </label>
         <input
@@ -61,13 +93,28 @@ export function SellRentForm() {
           required
           value={zona}
           onChange={(e) => setZona(e.target.value)}
-          placeholder="Ej: Centro, Minas"
-          className="rounded-md border border-oliva-300 bg-white px-3 py-2.5 text-oliva-900 placeholder:text-oliva-400 focus:outline-none focus:ring-2 focus:ring-oliva-500"
+          placeholder="Ej: Centro, camino a Villa Serrana"
+          className="foco-visible rounded-md border border-piedra-300 bg-white px-3 py-2.5 text-tinta-900 placeholder:text-piedra-400"
+        />
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="nombre" className="text-sm font-medium text-tinta-800">
+          Nombre
+        </label>
+        <input
+          id="nombre"
+          type="text"
+          required
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          placeholder="Tu nombre"
+          className="foco-visible rounded-md border border-piedra-300 bg-white px-3 py-2.5 text-tinta-900 placeholder:text-piedra-400"
         />
       </div>
 
       <div className="flex flex-col gap-1.5 sm:col-span-2">
-        <label htmlFor="telefono" className="text-sm font-medium text-oliva-800">
+        <label htmlFor="telefono" className="text-sm font-medium text-tinta-800">
           Teléfono de contacto
         </label>
         <input
@@ -77,15 +124,15 @@ export function SellRentForm() {
           value={telefono}
           onChange={(e) => setTelefono(e.target.value)}
           placeholder="Ej: 099 000 000"
-          className="rounded-md border border-oliva-300 bg-white px-3 py-2.5 text-oliva-900 placeholder:text-oliva-400 focus:outline-none focus:ring-2 focus:ring-oliva-500"
+          className="foco-visible rounded-md border border-piedra-300 bg-white px-3 py-2.5 text-tinta-900 placeholder:text-piedra-400"
         />
       </div>
 
       <button
         type="submit"
-        className="sm:col-span-2 rounded-md bg-oliva-700 text-arena-50 font-semibold py-3 hover:bg-oliva-600 transition-colors"
+        className="foco-visible sm:col-span-2 min-h-[44px] rounded-md bg-sierra-700 py-3 font-semibold text-piedra-50 transition-colors hover:bg-sierra-600"
       >
-        Solicitar tasación
+        Pedir tasación por WhatsApp
       </button>
     </form>
   )

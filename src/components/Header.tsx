@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import { NEGOCIO } from '../config'
+import { SierraMark } from './illustrations/SierraMark'
 
 const links = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#propiedades', label: 'Propiedades' },
-  { href: '#vender-alquilar', label: 'Vender/Alquilar' },
+  { href: '#zonas', label: 'Zonas' },
+  { href: '#tasaciones', label: 'Tasamos tu propiedad' },
   { href: '#contacto', label: 'Contacto' },
 ]
 
@@ -11,26 +14,26 @@ export function Header() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 bg-arena-50/95 backdrop-blur border-b border-oliva-200">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
-        <a href="#inicio" className="flex items-center gap-2 font-heading text-oliva-800">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-oliva-700 text-arena-50 text-sm font-bold">
-            CP
-          </span>
-          <span className="text-lg sm:text-xl leading-tight">
-            Cerro del Pintado
-            <span className="block text-[11px] font-sans font-normal tracking-wide text-oliva-600">
-              INMOBILIARIA
+    <header className="sticky top-0 z-40 border-b border-piedra-200 bg-piedra-50/95 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <a href="#inicio" className="flex items-center gap-2.5 foco-visible rounded-sm">
+          <SierraMark className="h-9 w-9 shrink-0" />
+          <span className="leading-tight">
+            <span className="block font-display text-lg text-sierra-800 sm:text-xl">
+              {NEGOCIO.nombre}
+            </span>
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-piedra-700">
+              {NEGOCIO.rubro} · Minas
             </span>
           </span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex md:items-center md:gap-7">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-oliva-800 hover:text-oliva-500 transition-colors"
+              className="foco-visible rounded-sm text-sm font-medium text-tinta-700 transition-colors hover:text-sierra-600"
             >
               {link.label}
             </a>
@@ -40,9 +43,10 @@ export function Header() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md text-oliva-800"
-          aria-label="Abrir menú"
+          className="foco-visible inline-flex h-11 w-11 items-center justify-center rounded-md text-sierra-800 md:hidden"
+          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
           aria-expanded={open}
+          aria-controls="menu-mobile"
         >
           <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
             {open ? (
@@ -55,13 +59,13 @@ export function Header() {
       </div>
 
       {open && (
-        <nav className="md:hidden border-t border-oliva-200 bg-arena-50 px-4 pb-4 flex flex-col gap-3">
+        <nav id="menu-mobile" className="flex flex-col gap-1 border-t border-piedra-200 bg-piedra-50 px-4 pb-4 md:hidden">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="py-2 text-sm font-medium text-oliva-800"
+              className="foco-visible flex min-h-[44px] items-center rounded-sm text-[15px] font-medium text-tinta-700"
             >
               {link.label}
             </a>

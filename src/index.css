@@ -1,33 +1,126 @@
 @import "tailwindcss";
 
+/* Tipografías self-hosted (sin CDN externo) */
+@import "@fontsource-variable/fraunces/standard.css";
+@import "@fontsource-variable/fraunces/standard-italic.css";
+@import "@fontsource-variable/public-sans";
+
 @theme {
-  --font-sans: 'Segoe UI', system-ui, Roboto, sans-serif;
-  --font-heading: 'Georgia', 'Times New Roman', serif;
+  --font-display: 'Fraunces Variable', 'Fraunces', ui-serif, serif;
+  --font-sans: 'Public Sans Variable', 'Public Sans', system-ui, sans-serif;
 
-  --color-oliva-50: #f6f7f2;
-  --color-oliva-100: #e8ebdd;
-  --color-oliva-200: #d3d9bc;
-  --color-oliva-300: #b6c090;
-  --color-oliva-400: #9aa66b;
-  --color-oliva-500: #7c8a4e;
-  --color-oliva-600: #626f3d;
-  --color-oliva-700: #4d5731;
-  --color-oliva-800: #40482c;
-  --color-oliva-900: #383e29;
+  /* Piedra / arena — cálidos, de sierra */
+  --color-piedra-50: #faf7f0;
+  --color-piedra-100: #f2ebdb;
+  --color-piedra-200: #e6d9bd;
+  --color-piedra-300: #d6c096;
+  --color-piedra-400: #c4a56d;
+  --color-piedra-500: #b28c50;
+  --color-piedra-600: #8f6f3f;
+  --color-piedra-700: #7a5e35;
 
-  --color-arena-50: #fdfbf6;
-  --color-arena-100: #f8f3e7;
-  --color-arena-200: #efe4cc;
-  --color-arena-300: #e2cea3;
-  --color-arena-400: #d3b378;
-  --color-arena-500: #c49a56;
+  /* Verde sierra — profundo, de monte serrano */
+  --color-sierra-50: #eef2ec;
+  --color-sierra-100: #d7e0d0;
+  --color-sierra-200: #b1c2a3;
+  --color-sierra-300: #85a172;
+  --color-sierra-400: #5d7d4c;
+  --color-sierra-500: #3f5c34;
+  --color-sierra-600: #33492b;
+  --color-sierra-700: #293b23;
+  --color-sierra-800: #202f1c;
+  --color-sierra-900: #172214;
+
+  /* Tinta — casi negro, para texto y contraste */
+  --color-tinta-900: #201c16;
+  --color-tinta-700: #3a352c;
+
+  /* Brasa — acento cálido, cobrizo, uso puntual */
+  --color-brasa-400: #c1622f;
+  --color-brasa-500: #a24f24;
+  --color-brasa-600: #7f3e1c;
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
   margin: 0;
-  background-color: var(--color-arena-50);
+  background-color: var(--color-piedra-50);
+  color: var(--color-tinta-900);
+}
+
+/* Textura sutil de papel, generada localmente (sin descargas externas) */
+.textura-papel {
+  position: relative;
+}
+
+.textura-papel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Aparición al hacer scroll (useReveal) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 550ms ease-out, transform 550ms ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cinta de logos infinita */
+@keyframes cinta-desplazar {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.cinta-track {
+  animation: cinta-desplazar 32s linear infinite;
+}
+
+.cinta-pausa:hover .cinta-track,
+.cinta-pausa:focus-within .cinta-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .cinta-track {
+    animation: none;
+  }
+}
+
+.foco-visible:focus-visible {
+  outline: 2px solid var(--color-brasa-500);
+  outline-offset: 2px;
+}
+
+::selection {
+  background-color: var(--color-sierra-300);
+  color: var(--color-sierra-900);
 }
