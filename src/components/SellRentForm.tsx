@@ -1,8 +1,10 @@
 import { CheckCircle2 } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
+import { useDatos } from '../data/DatosContext'
 import { linkWhatsApp } from '../lib/whatsapp'
 
 export function SellRentForm() {
+  const { negocio } = useDatos()
   const [tipo, setTipo] = useState('Casa')
   const [operacion, setOperacion] = useState('Vender')
   const [zona, setZona] = useState('')
@@ -13,7 +15,7 @@ export function SellRentForm() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
     const mensaje = `Hola! Soy ${nombre} y quiero ${operacion === 'Vender' ? 'vender' : 'alquilar'} un/a ${tipo.toLowerCase()} en zona ${zona}. Mi teléfono es ${telefono}. ¿Me pueden ayudar con una tasación?`
-    const url = linkWhatsApp(mensaje)
+    const url = linkWhatsApp(mensaje, negocio.whatsappLink)
     setLink(url)
     window.open(url, '_blank', 'noopener,noreferrer')
   }

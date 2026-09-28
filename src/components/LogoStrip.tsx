@@ -1,6 +1,6 @@
 import { useReveal } from '../hooks/useReveal'
 
-// Nombres ficticios de empresas que "trabajan con" la inmobiliaria — ninguno
+// Nombres ficticios de empresas que "trabajan con" la inmobiliaria: ninguno
 // corresponde a una marca real.
 const aliados = [
   'Escribanía Zabala & Ferreira',

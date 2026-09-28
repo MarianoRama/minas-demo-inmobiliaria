@@ -1,6 +1,6 @@
 /**
- * Ilustración de marca: panorámica de las sierras de Minas al atardecer —
- * cielo con degradé cálido, cordones serranos con progresión de valor
+ * Ilustración de marca: panorámica de las sierras de Minas al atardecer,
+ * con cielo cálido, cordones serranos con progresión de valor
  * (lejos claro y cálido, cerca oscuro y verde), monte y un rancho con la
  * ventana encendida. Pensada para ocupar el hero completo (mitad derecha y
  * parte baja), no una franja angosta.

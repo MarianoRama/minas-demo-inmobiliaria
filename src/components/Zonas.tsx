@@ -30,27 +30,26 @@ export function Zonas() {
         style={style}
       >
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brasa-500">Cobertura</p>
-          <h2 className="mt-2 font-display text-3xl text-tinta-900 sm:text-4xl">Zonas donde trabajamos</h2>
+          <h2 className="font-display text-3xl text-tinta-900 sm:text-4xl">Zonas donde trabajamos</h2>
           <p className="mt-3 max-w-md text-tinta-700/80">
             Conocemos Minas casa por casa: desde el trazado colonial del centro hasta los caminos
             de tierra que llevan a Villa Serrana.
           </p>
 
-          <ol className="mt-8 divide-y divide-piedra-200 border-t border-piedra-200">
+          <div className="mt-8 grid gap-5 sm:grid-cols-2">
             {zonas.map((zona, i) => (
-              <li key={zona.nombre} className="flex gap-4 py-5">
-                <span className="font-display text-2xl text-piedra-400">{String(i + 1).padStart(2, '0')}</span>
-                <div>
-                  <p className="font-display text-lg text-tinta-900">{zona.nombre}</p>
-                  <p className="mt-1 text-sm text-tinta-700/75">{zona.detalle}</p>
-                </div>
-              </li>
+              <div
+                key={zona.nombre}
+                className={`border-2 border-piedra-300 bg-piedra-50 p-4 ${i === 1 ? 'sm:mt-6' : ''} ${i === 2 ? 'sm:-mt-2' : ''}`}
+              >
+                <p className="font-display text-lg text-tinta-900">{zona.nombre}</p>
+                <p className="mt-1.5 text-sm text-tinta-700/75">{zona.detalle}</p>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
 
-        <div className="overflow-hidden rounded-lg border border-piedra-200 bg-sierra-800">
+        <div className="border-2 border-piedra-200 bg-sierra-800">
           <div className="relative aspect-[4/3] w-full">
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-sierra-800 text-piedra-200">
               <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.6">

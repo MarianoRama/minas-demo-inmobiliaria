@@ -1,7 +1,9 @@
+import { useDatos } from '../data/DatosContext'
 import { useReveal } from '../hooks/useReveal'
 import { SellRentForm } from './SellRentForm'
 
 export function SellRentSection() {
+  const { negocio } = useDatos()
   const { nodeRef, className, style } = useReveal<HTMLDivElement>()
 
   return (
@@ -12,8 +14,7 @@ export function SellRentSection() {
         style={style}
       >
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brasa-500">Tasaciones</p>
-          <h2 className="mt-2 font-display text-3xl text-tinta-900 sm:text-4xl">
+          <h2 className="font-display text-3xl text-tinta-900 sm:text-4xl">
             ¿Querés vender o alquilar tu propiedad?
           </h2>
           <p className="mt-4 text-tinta-700/80">
@@ -25,9 +26,18 @@ export function SellRentSection() {
             Formulario de demostración: arma un mensaje de WhatsApp, no envía datos a ningún
             servidor.
           </p>
+
+          <div className="relative mt-8 inline-block max-w-[260px] -rotate-2 border-[6px] border-piedra-400 bg-piedra-200 px-5 py-4 shadow-[3px_3px_0_var(--color-tinta-900)]">
+            <div aria-hidden="true" className="absolute left-2 top-2 h-2 w-2 rounded-full bg-piedra-500" />
+            <div aria-hidden="true" className="absolute right-2 top-2 h-2 w-2 rounded-full bg-piedra-500" />
+            <div aria-hidden="true" className="absolute bottom-2 left-2 h-2 w-2 rounded-full bg-piedra-500" />
+            <div aria-hidden="true" className="absolute bottom-2 right-2 h-2 w-2 rounded-full bg-piedra-500" />
+            <p className="text-center font-hand text-4xl font-semibold text-tinta-900">Se vende</p>
+            <p className="mt-1 text-center text-sm font-semibold text-tinta-800">{negocio.whatsapp}</p>
+          </div>
         </div>
 
-        <div className="rounded-lg border border-piedra-200 bg-white p-6 shadow-sm sm:p-8">
+        <div className="border-2 border-piedra-200 bg-white p-6 sm:p-8">
           <SellRentForm />
         </div>
       </div>

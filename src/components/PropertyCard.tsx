@@ -1,8 +1,10 @@
 import { Bath, BedDouble, Car, Ruler } from 'lucide-react'
+import { useDatos } from '../data/DatosContext'
 import { useReveal } from '../hooks/useReveal'
 import { linkWhatsApp } from '../lib/whatsapp'
 import type { Propiedad } from '../types'
 import { PropertyArt } from './illustrations/PropertyArt'
+import { Sello } from './Sello'
 
 interface Props {
   propiedad: Propiedad
@@ -14,14 +16,15 @@ interface Props {
 
 export function PropertyCard({ propiedad, esFavorito, onAlternarFavorito, onAbrir, retrasoMs = 0 }: Props) {
   const { nodeRef, className, style } = useReveal<HTMLDivElement>(retrasoMs)
+  const { negocio } = useDatos()
   const badgeColor =
     propiedad.operacion === 'Venta' ? 'bg-sierra-700 text-piedra-50' : 'bg-brasa-500 text-piedra-50'
 
-  const mensajeVisita = `Hola! Quiero coordinar una visita a la propiedad ${propiedad.referencia} — ${propiedad.titulo} (${propiedad.zona}). ¿Tenés disponibilidad esta semana?`
+  const mensajeVisita = `Hola. Quiero coordinar una visita a la propiedad ${propiedad.referencia}: ${propiedad.titulo} (${propiedad.zona}). ¿Tenés disponibilidad esta semana?`
 
   return (
     <div ref={nodeRef} className={className} style={style}>
-      <article className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-piedra-200 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-tinta-900/10">
+      <article className="group relative flex h-full flex-col border-2 border-piedra-200 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:border-tinta-900 hover:shadow-[5px_5px_0_var(--color-tinta-900)]">
         <button
           type="button"
           onClick={() => onAbrir(propiedad)}
@@ -29,9 +32,9 @@ export function PropertyCard({ propiedad, esFavorito, onAlternarFavorito, onAbri
           aria-haspopup="dialog"
         >
           <div className="relative aspect-[4/3] overflow-hidden bg-piedra-100">
-            {propiedad.foto ? (
+            {propiedad.fotos[0] ? (
               <img
-                src={propiedad.foto}
+                src={propiedad.fotos[0]}
                 alt={propiedad.titulo}
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
@@ -39,6 +42,11 @@ export function PropertyCard({ propiedad, esFavorito, onAlternarFavorito, onAbri
             ) : (
               <div className="h-full w-full transition-transform duration-500 ease-out group-hover:scale-105">
                 <PropertyArt tipo={propiedad.tipo} id={propiedad.id} className="h-full w-full" />
+              </div>
+            )}
+            {propiedad.estado !== 'Disponible' && (
+              <div className="absolute inset-0 flex items-center justify-center bg-piedra-50/10">
+                <Sello estado={propiedad.estado} className="bg-piedra-50/70" />
               </div>
             )}
             <span className={`absolute left-3 top-3 rounded-sm px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${badgeColor}`}>
@@ -114,10 +122,10 @@ export function PropertyCard({ propiedad, esFavorito, onAlternarFavorito, onAbri
             </svg>
           </button>
           <a
-            href={linkWhatsApp(mensajeVisita)}
+            href={linkWhatsApp(mensajeVisita, negocio.whatsappLink)}
             target="_blank"
             rel="noopener noreferrer"
-            className="foco-visible flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-md bg-sierra-700 px-3 text-sm font-semibold text-piedra-50 transition-colors hover:bg-sierra-600"
+            className="foco-visible flex min-h-[44px] flex-1 items-center justify-center gap-1.5 bg-sierra-700 px-3 text-sm font-semibold text-piedra-50 transition-colors hover:bg-sierra-600"
           >
             Coordinar visita
           </a>

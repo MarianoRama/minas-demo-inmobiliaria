@@ -1,6 +1,8 @@
+import { useDatos } from '../data/DatosContext'
 import { HeroLandscape } from './illustrations/HeroLandscape'
 
 export function Hero() {
+  const { negocio } = useDatos()
   return (
     <section id="inicio" className="relative overflow-hidden bg-sierra-800 textura-papel text-piedra-50">
       <div className="relative">
@@ -23,7 +25,7 @@ export function Hero() {
           <div className="max-w-xl">
             <p className="mb-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-piedra-300">
               <span className="h-px w-8 bg-piedra-300" aria-hidden="true" />
-              Minas, Lavalleja — desde 2011
+              Minas, Lavalleja, desde 2011
             </p>
             <h1
               className="font-display text-[clamp(2.15rem,5vw,3.5rem)] leading-[1.12] text-piedra-50"
@@ -32,10 +34,19 @@ export function Hero() {
               Casas, campos y locales con los pies en la sierra.
             </h1>
             <p className="mt-6 max-w-md text-[15px] leading-relaxed text-piedra-200 sm:text-base">
-              Compramos, vendemos y alquilamos propiedades en Minas y su zona rural desde hace
-              catorce años. Conocemos cada cuadra del centro y cada camino a Villa Serrana —
-              asesoramiento directo, sin intermediarios de más.
+              Compramos, vendemos y alquilamos en Minas y su zona rural. Conocemos cada cuadra del
+              centro y cada camino a Villa Serrana, así que la tasación la hacemos caminando el
+              lugar, no desde una planilla.
             </p>
+            {negocio.avisoHome && (
+              <p className="mt-4 inline-flex max-w-md items-start gap-2 border-l-2 border-brasa-400 bg-piedra-900/20 px-3 py-2 text-sm text-piedra-100">
+                <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <path d="M12 2v13M8 6l4-4 4 4" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M5 15c0 3.9 3.1 7 7 7s7-3.1 7-7" strokeLinecap="round" />
+                </svg>
+                {negocio.avisoHome}
+              </p>
+            )}
             <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
               <a
                 href="#propiedades"
@@ -57,21 +68,12 @@ export function Hero() {
         </div>
       </div>
 
-      <dl className="relative border-t border-piedra-100/15 bg-sierra-900/40">
-        <div className="mx-auto grid max-w-6xl grid-cols-3 divide-x divide-piedra-100/15 px-4 sm:px-6">
-          {[
-            { valor: '14', etiqueta: 'años en la plaza de Minas' },
-            { valor: '210+', etiqueta: 'operaciones cerradas' },
-            { valor: '12', etiqueta: 'propiedades disponibles hoy' },
-          ].map((dato) => (
-            <div key={dato.etiqueta} className="px-3 py-6 text-center sm:px-6 sm:text-left">
-              <dt className="sr-only">{dato.etiqueta}</dt>
-              <dd className="font-display text-2xl text-piedra-50 sm:text-3xl">{dato.valor}</dd>
-              <dd className="mt-1 text-[11px] leading-snug text-piedra-300 sm:text-xs">{dato.etiqueta}</dd>
-            </div>
-          ))}
-        </div>
-      </dl>
+      <div className="relative border-t border-piedra-100/15 bg-sierra-900/40 py-4">
+        <p className="mx-auto max-w-6xl px-4 text-[13px] text-piedra-300 sm:px-6">
+          Oficina en Treinta y Tres 812, a media cuadra de Plaza Libertad. Atendemos de lunes a
+          sábado y coordinamos visitas los domingos si hace falta.
+        </p>
+      </div>
     </section>
   )
 }

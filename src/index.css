@@ -4,12 +4,14 @@
 @import "@fontsource-variable/fraunces/standard.css";
 @import "@fontsource-variable/fraunces/standard-italic.css";
 @import "@fontsource-variable/public-sans";
+@import "@fontsource-variable/caveat";
 
 @theme {
   --font-display: 'Fraunces Variable', 'Fraunces', ui-serif, serif;
   --font-sans: 'Public Sans Variable', 'Public Sans', system-ui, sans-serif;
+  --font-hand: 'Caveat Variable', 'Caveat', cursive;
 
-  /* Piedra / arena — cálidos, de sierra */
+  /* Piedra y arena: cálidos, de sierra */
   --color-piedra-50: #faf7f0;
   --color-piedra-100: #f2ebdb;
   --color-piedra-200: #e6d9bd;
@@ -19,7 +21,7 @@
   --color-piedra-600: #8f6f3f;
   --color-piedra-700: #7a5e35;
 
-  /* Verde sierra — profundo, de monte serrano */
+  /* Verde sierra: profundo, de monte serrano */
   --color-sierra-50: #eef2ec;
   --color-sierra-100: #d7e0d0;
   --color-sierra-200: #b1c2a3;
@@ -31,11 +33,11 @@
   --color-sierra-800: #202f1c;
   --color-sierra-900: #172214;
 
-  /* Tinta — casi negro, para texto y contraste */
+  /* Tinta: casi negro, para texto y contraste */
   --color-tinta-900: #201c16;
   --color-tinta-700: #3a352c;
 
-  /* Brasa — acento cálido, cobrizo, uso puntual */
+  /* Brasa: acento cálido, cobrizo, uso puntual */
   --color-brasa-400: #c1622f;
   --color-brasa-500: #a24f24;
   --color-brasa-600: #7f3e1c;

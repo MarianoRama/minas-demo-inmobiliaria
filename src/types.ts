@@ -4,6 +4,8 @@ export type TipoPropiedad = 'Casa' | 'Apartamento' | 'Terreno' | 'Chacra' | 'Loc
 
 export type Moneda = 'USD' | 'UYU'
 
+export type EstadoPropiedad = 'Disponible' | 'Reservada' | 'Vendida' | 'Alquilada'
+
 export interface Propiedad {
   id: number
   referencia: string
@@ -22,7 +24,29 @@ export interface Propiedad {
   zona: string
   direccion: string
   descripcion: string
-  destacada?: boolean
-  /** Si existe, se muestra la foto real en lugar de la ilustración. */
-  foto?: string
+  caracteristicas: string[]
+  estado: EstadoPropiedad
+  /** Si está en false, no se muestra en el sitio público (pausada desde el panel). */
+  publicada: boolean
+  /** Hasta 4 fotos reales del cliente. Si está vacío se usa la ilustración propia. */
+  fotos: string[]
+}
+
+export interface HorarioDia {
+  dia: string
+  texto: string
+}
+
+export interface DatosNegocio {
+  nombre: string
+  rubro: string
+  slogan: string
+  whatsapp: string
+  whatsappLink: string
+  telefonoFijo: string
+  email: string
+  direccion: string
+  horarios: HorarioDia[]
+  /** Texto corto que se muestra como novedad/aviso en el home. */
+  avisoHome: string
 }

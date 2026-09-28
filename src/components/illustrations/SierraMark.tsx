@@ -1,4 +1,4 @@
-/** Marca de agua de las sierras de Minas — usada en el logo y el hero. */
+/** Marca de agua de las sierras de Minas. Se usa en el logo y en el hero. */
 export function SierraMark({ className = 'h-10 w-10' }: { className?: string }) {
   return (
     <svg viewBox="0 0 64 64" className={className} aria-hidden="true">

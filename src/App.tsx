@@ -1,3 +1,4 @@
+import { AdminApp } from './admin/AdminApp'
 import { DemoBanner } from './components/DemoBanner'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
@@ -8,8 +9,10 @@ import { SellRentSection } from './components/SellRentSection'
 import { Testimonios } from './components/Testimonios'
 import { WhatsAppButton } from './components/WhatsAppButton'
 import { Zonas } from './components/Zonas'
+import { DatosProvider } from './data/store'
+import { useHashRoute } from './hooks/useHashRoute'
 
-function App() {
+function Sitio() {
   return (
     <div className="flex min-h-screen flex-col font-sans">
       <DemoBanner />
@@ -26,6 +29,13 @@ function App() {
       <WhatsAppButton />
     </div>
   )
+}
+
+function App() {
+  const ruta = useHashRoute()
+  const esAdmin = ruta.startsWith('/admin')
+
+  return <DatosProvider>{esAdmin ? <AdminApp /> : <Sitio />}</DatosProvider>
 }
 
 export default App

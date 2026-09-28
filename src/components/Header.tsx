@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NEGOCIO } from '../config'
+import { useDatos } from '../data/DatosContext'
 import { SierraMark } from './illustrations/SierraMark'
 
 const links = [
@@ -12,6 +12,7 @@ const links = [
 
 export function Header() {
   const [open, setOpen] = useState(false)
+  const { negocio } = useDatos()
 
   return (
     <header className="sticky top-0 z-40 border-b border-piedra-200 bg-piedra-50/95 backdrop-blur">
@@ -20,10 +21,10 @@ export function Header() {
           <SierraMark className="h-9 w-9 shrink-0" />
           <span className="leading-tight">
             <span className="block font-display text-lg text-sierra-800 sm:text-xl">
-              {NEGOCIO.nombre}
+              {negocio.nombre}
             </span>
             <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-piedra-700">
-              {NEGOCIO.rubro} · Minas
+              {negocio.rubro} · Minas
             </span>
           </span>
         </a>

@@ -1,11 +1,12 @@
+import { useDatos } from '../data/DatosContext'
 import { linkWhatsApp } from '../lib/whatsapp'
 
-const MENSAJE = 'Hola! Vi el sitio de Piedra Serrana (demo) y quería hacer una consulta.'
-
 export function WhatsAppButton() {
+  const { negocio } = useDatos()
+  const mensaje = `Hola! Vi el sitio de ${negocio.nombre} (demo) y quería hacer una consulta.`
   return (
     <a
-      href={linkWhatsApp(MENSAJE)}
+      href={linkWhatsApp(mensaje, negocio.whatsappLink)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Consultar por WhatsApp (número de ejemplo)"

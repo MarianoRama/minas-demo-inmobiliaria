@@ -17,7 +17,7 @@ function guardar(ids: number[]) {
   try {
     window.localStorage.setItem(CLAVE, JSON.stringify(ids))
   } catch {
-    // localStorage no disponible (modo privado, permisos, etc.) — seguimos sin persistir.
+    // localStorage no disponible (modo privado, permisos, etc.): seguimos sin persistir.
   }
 }
 
