@@ -1,10 +1,106 @@
 {
   "propiedades": [
-    { "id": 1, "titulo": "Casa con parrillero en Cerro del Pintado", "tipo": "Casa", "operacion": "Venta", "m2": 180, "dormitorios": 3, "precio": "USD 145.000", "zona": "Cerro del Pintado, Minas", "imagen": "" },
-    { "id": 2, "titulo": "Apartamento a estrenar frente a plaza", "tipo": "Apartamento", "operacion": "Venta", "m2": 62, "dormitorios": 2, "precio": "USD 78.000", "zona": "Centro, Minas", "imagen": "" },
-    { "id": 3, "titulo": "Terreno con vista a la sierra", "tipo": "Terreno", "operacion": "Venta", "m2": 900, "dormitorios": 0, "precio": "USD 32.000", "zona": "Ruta 8, salida a Minas", "imagen": "" },
-    { "id": 4, "titulo": "Casa de un piso con jardín", "tipo": "Casa", "operacion": "Alquiler", "m2": 120, "dormitorios": 3, "precio": "$U 28.000 / mes", "zona": "Barrio Corrales, Minas", "imagen": "" },
-    { "id": 5, "titulo": "Apartamento luminoso, un dormitorio", "tipo": "Apartamento", "operacion": "Alquiler", "m2": 45, "dormitorios": 1, "precio": "$U 16.500 / mes", "zona": "Centro, Minas", "imagen": "" },
-    { "id": 6, "titulo": "Terreno para emprendimiento agrícola", "tipo": "Terreno", "operacion": "Alquiler", "m2": 5000, "dormitorios": 0, "precio": "$U 12.000 / mes", "zona": "Zona rural, Minas", "imagen": "" }
+    {
+      "id": 1,
+      "titulo": "Casa con parrillero en Cerro del Pintado",
+      "tipo": "Casa",
+      "operacion": "Venta",
+      "m2": 180,
+      "dormitorios": 3,
+      "precio": "USD 145.000",
+      "zona": "Cerro del Pintado, Minas",
+      "imagenes": [
+        {
+          "src": "/minas-demo-inmobiliaria/propiedades/1-1.jpg",
+          "credito": "Toa Heftiba / Unsplash"
+        }
+      ],
+      "precioValor": 145000
+    },
+    {
+      "id": 2,
+      "titulo": "Apartamento a estrenar frente a plaza",
+      "tipo": "Apartamento",
+      "operacion": "Venta",
+      "m2": 62,
+      "dormitorios": 2,
+      "precio": "USD 78.000",
+      "zona": "Centro, Minas",
+      "imagenes": [
+        {
+          "src": "/minas-demo-inmobiliaria/propiedades/2-1.jpg",
+          "credito": "Unsplash"
+        }
+      ],
+      "precioValor": 78000
+    },
+    {
+      "id": 3,
+      "titulo": "Terreno con vista a la sierra",
+      "tipo": "Terreno",
+      "operacion": "Venta",
+      "m2": 900,
+      "dormitorios": 0,
+      "precio": "USD 32.000",
+      "zona": "Ruta 8, salida a Minas",
+      "imagenes": [
+        {
+          "src": "/minas-demo-inmobiliaria/propiedades/3-1.jpg",
+          "credito": "Francesco Ungaro / Unsplash"
+        }
+      ],
+      "precioValor": 32000
+    },
+    {
+      "id": 4,
+      "titulo": "Casa con jardín",
+      "tipo": "Casa",
+      "operacion": "Alquiler",
+      "m2": 120,
+      "dormitorios": 3,
+      "precio": "$U 28.000 / mes",
+      "zona": "Barrio Corrales, Minas",
+      "imagenes": [
+        {
+          "src": "/minas-demo-inmobiliaria/propiedades/4-1.jpg",
+          "credito": "Zac Gudakov / Unsplash"
+        }
+      ],
+      "precioValor": 28000
+    },
+    {
+      "id": 5,
+      "titulo": "Apartamento luminoso, un dormitorio",
+      "tipo": "Apartamento",
+      "operacion": "Alquiler",
+      "m2": 45,
+      "dormitorios": 1,
+      "precio": "$U 16.500 / mes",
+      "zona": "Centro, Minas",
+      "imagenes": [
+        {
+          "src": "/minas-demo-inmobiliaria/propiedades/5-1.jpg",
+          "credito": "Unsplash"
+        }
+      ],
+      "precioValor": 16500
+    },
+    {
+      "id": 6,
+      "titulo": "Terreno para emprendimiento agrícola",
+      "tipo": "Terreno",
+      "operacion": "Alquiler",
+      "m2": 5000,
+      "dormitorios": 0,
+      "precio": "$U 12.000 / mes",
+      "zona": "Zona rural, Minas",
+      "imagenes": [
+        {
+          "src": "/minas-demo-inmobiliaria/propiedades/6-1.jpg",
+          "credito": "Siebe Warmoeskerken / Unsplash"
+        }
+      ],
+      "precioValor": 12000
+    }
   ]
 }

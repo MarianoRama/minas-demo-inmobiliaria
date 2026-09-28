@@ -1,6 +1,11 @@
 export type TipoOperacion = 'Venta' | 'Alquiler'
 export type TipoPropiedad = 'Casa' | 'Apartamento' | 'Terreno'
 
+export interface FotoPropiedad {
+  src: string
+  credito: string
+}
+
 export interface Propiedad {
   id: number
   titulo: string
@@ -9,6 +14,7 @@ export interface Propiedad {
   m2: number
   dormitorios: number
   precio: string
+  precioValor: number
   zona: string
-  imagen: string
+  imagenes: FotoPropiedad[]
 }

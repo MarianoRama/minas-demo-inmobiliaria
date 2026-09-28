@@ -35,5 +35,13 @@ collections:
               - { name: m2, label: Superficie en m², widget: number, value_type: int, min: 0 }
               - { name: dormitorios, label: Dormitorios (0 para terreno), widget: number, value_type: int, min: 0 }
               - { name: precio, label: Precio, widget: string, hint: 'Ej.: USD 145.000 o $U 28.000 / mes' }
+              - { name: precioValor, label: Valor numérico para filtros (USD en venta, pesos por mes en alquiler), widget: number, value_type: int, min: 0 }
               - { name: zona, label: Zona, widget: string }
-              - { name: imagen, label: Foto, widget: image }
+              - name: imagenes
+                label: Fotos ilustrativas o del inmueble
+                widget: list
+                summary: '{{fields.credito}}'
+                min: 1
+                fields:
+                  - { name: src, label: Foto, widget: image }
+                  - { name: credito, label: Crédito de la foto, widget: string, hint: 'Ej.: Fotógrafo / Unsplash, o Foto del propietario' }

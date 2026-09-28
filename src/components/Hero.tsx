@@ -46,7 +46,7 @@ export function Hero() {
         </div>
         <figure className="overflow-hidden rounded-2xl border border-arena-100/20 bg-oliva-900/40 shadow-2xl shadow-black/20">
           <img
-            src="https://images.unsplash.com/photo-1534430198509-8a3091682aa8?auto=format&fit=crop&w=1400&q=80"
+            src="/minas-demo-inmobiliaria/propiedades/1-1.jpg"
             alt="Fachada de una vivienda; imagen ilustrativa"
             className="aspect-[4/3] w-full object-cover"
             fetchPriority="high"
