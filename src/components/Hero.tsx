@@ -4,15 +4,22 @@ export function Hero() {
   return (
     <section id="inicio" className="relative overflow-hidden bg-sierra-800 textura-papel text-piedra-50">
       <div className="relative">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[240px] sm:h-[300px] lg:h-[340px]"
-          style={{ maskImage: 'linear-gradient(to bottom, transparent, black 22%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 22%)' }}
-        >
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <HeroLandscape className="h-full w-full" idSuffix="hero" />
         </div>
+        {/* velo para que el texto mantenga contraste AA sobre el paisaje */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 hidden sm:block"
+          style={{ background: 'linear-gradient(115deg, #16211a 0%, rgba(22,33,26,0.85) 32%, rgba(22,33,26,0.35) 56%, transparent 72%)' }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 sm:hidden"
+          style={{ background: 'linear-gradient(180deg, rgba(22,33,26,0.15) 0%, rgba(22,33,26,0.8) 42%, rgba(22,33,26,0.8) 68%, transparent 96%)' }}
+        />
 
-        <div className="relative mx-auto max-w-6xl px-4 pb-[170px] pt-12 sm:px-6 sm:pb-[220px] sm:pt-16 lg:pb-[240px] lg:pt-16">
+        <div className="relative mx-auto max-w-6xl px-4 pb-[190px] pt-12 sm:px-6 sm:pb-[240px] sm:pt-16 lg:pb-[260px] lg:pt-16">
           <div className="max-w-xl">
             <p className="mb-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-piedra-300">
               <span className="h-px w-8 bg-piedra-300" aria-hidden="true" />
