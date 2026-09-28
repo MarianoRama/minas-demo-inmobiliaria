@@ -1,0 +1,39 @@
+backend:
+  name: github
+  repo: MarianoRama/minas-demo-inmobiliaria
+  branch: main
+
+media_folder: public/uploads
+public_folder: /minas-demo-inmobiliaria/uploads
+publish_mode: editorial_workflow
+locale: es
+
+collections:
+  - name: inventario
+    label: Propiedades
+    files:
+      - name: propiedades
+        label: Propiedades publicadas
+        file: src/data/properties.json
+        format: json
+        fields:
+          - name: propiedades
+            label: Propiedades
+            widget: list
+            summary: '{{fields.titulo}} · {{fields.operacion}}'
+            fields:
+              - { name: id, label: ID, widget: number, value_type: int, min: 1 }
+              - { name: titulo, label: Título, widget: string }
+              - name: tipo
+                label: Tipo
+                widget: select
+                options: [Casa, Apartamento, Terreno]
+              - name: operacion
+                label: Operación
+                widget: select
+                options: [Venta, Alquiler]
+              - { name: m2, label: Superficie en m², widget: number, value_type: int, min: 0 }
+              - { name: dormitorios, label: Dormitorios (0 para terreno), widget: number, value_type: int, min: 0 }
+              - { name: precio, label: Precio, widget: string, hint: 'Ej.: USD 145.000 o $U 28.000 / mes' }
+              - { name: zona, label: Zona, widget: string }
+              - { name: imagen, label: Foto, widget: image }

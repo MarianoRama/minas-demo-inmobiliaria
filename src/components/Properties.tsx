@@ -24,12 +24,13 @@ export function Properties() {
         </p>
       </div>
 
-      <div className="flex justify-center gap-2 mb-10">
+      <div className="flex flex-wrap justify-center gap-2 mb-4" role="group" aria-label="Filtrar propiedades por operación">
         {filtros.map((f) => (
           <button
             key={f}
             type="button"
             onClick={() => setFiltro(f)}
+            aria-pressed={filtro === f}
             className={`rounded-full px-5 py-2 text-sm font-medium border transition-colors ${
               filtro === f
                 ? 'bg-oliva-700 border-oliva-700 text-arena-50'
@@ -40,6 +41,10 @@ export function Properties() {
           </button>
         ))}
       </div>
+
+      <p className="mb-6 text-center text-sm text-oliva-600" aria-live="polite">
+        {filtradas.length} {filtradas.length === 1 ? 'propiedad disponible' : 'propiedades disponibles'}
+      </p>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filtradas.map((p) => (

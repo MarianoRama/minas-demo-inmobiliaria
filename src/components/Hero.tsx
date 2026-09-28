@@ -22,7 +22,8 @@ export function Hero() {
         />
       </svg>
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-20 sm:py-28 flex flex-col items-start gap-6">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_.95fr] lg:py-24">
+        <div className="flex flex-col items-start gap-6">
         <span className="inline-flex items-center rounded-full bg-arena-50/10 border border-arena-100/30 px-4 py-1 text-xs font-medium tracking-wide uppercase">
           Minas, Uruguay
         </span>
@@ -30,8 +31,8 @@ export function Hero() {
           Encontrá tu próximo hogar al pie de la sierra
         </h1>
         <p className="max-w-xl text-arena-100/90 text-base sm:text-lg">
-          En Cerro del Pintado te acompañamos a comprar, vender o alquilar tu propiedad en Minas
-          y alrededores, con la confianza y el trato cercano de siempre.
+          En Inmobiliaria Piedra Serrana podés consultar propiedades en Minas y alrededores,
+          coordinar una visita o conversar sobre una venta o alquiler.
         </p>
         <a
           href="#propiedades"
@@ -42,6 +43,18 @@ export function Hero() {
             <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </a>
+        </div>
+        <figure className="overflow-hidden rounded-2xl border border-arena-100/20 bg-oliva-900/40 shadow-2xl shadow-black/20">
+          <img
+            src="https://images.unsplash.com/photo-1534430198509-8a3091682aa8?auto=format&fit=crop&w=1400&q=80"
+            alt="Fachada de una vivienda; imagen ilustrativa"
+            className="aspect-[4/3] w-full object-cover"
+            fetchPriority="high"
+          />
+          <figcaption className="px-4 py-3 text-xs text-arena-100/80">
+            Fotografía de Toa Heftiba / Unsplash. Imagen ilustrativa; no corresponde a un aviso en Minas.
+          </figcaption>
+        </figure>
       </div>
     </section>
   )

@@ -9,8 +9,8 @@ export function SellRentSection() {
             ¿Querés vender o alquilar tu propiedad?
           </h2>
           <p className="mt-3 text-oliva-600">
-            Dejanos tus datos y un asesor de Cerro del Pintado te contacta para coordinar una
-            tasación sin costo. (Formulario de demostración, no envía datos a ningún servidor.)
+            Contanos qué propiedad tenés y coordinamos una conversación para evaluar los próximos
+            pasos. En esta demo, el formulario no transmite ni guarda datos.
           </p>
         </div>
 

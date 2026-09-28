@@ -15,10 +15,10 @@ export function Header() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
         <a href="#inicio" className="flex items-center gap-2 font-heading text-oliva-800">
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-oliva-700 text-arena-50 text-sm font-bold">
-            CP
+            PS
           </span>
           <span className="text-lg sm:text-xl leading-tight">
-            Cerro del Pintado
+            Piedra Serrana
             <span className="block text-[11px] font-sans font-normal tracking-wide text-oliva-600">
               INMOBILIARIA
             </span>
@@ -41,8 +41,9 @@ export function Header() {
           type="button"
           onClick={() => setOpen((v) => !v)}
           className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md text-oliva-800"
-          aria-label="Abrir menú"
+          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
           aria-expanded={open}
+          aria-controls="menu-movil"
         >
           <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
             {open ? (
@@ -55,7 +56,7 @@ export function Header() {
       </div>
 
       {open && (
-        <nav className="md:hidden border-t border-oliva-200 bg-arena-50 px-4 pb-4 flex flex-col gap-3">
+        <nav id="menu-movil" className="md:hidden border-t border-oliva-200 bg-arena-50 px-4 pb-4 flex flex-col gap-3">
           {links.map((link) => (
             <a
               key={link.href}
