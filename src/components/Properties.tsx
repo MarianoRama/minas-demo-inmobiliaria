@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { propiedades } from '../data/propiedades'
 import type { Propiedad, TipoOperacion, TipoPropiedad } from '../types'
 import { PropertyCard } from './PropertyCard'
@@ -8,8 +8,25 @@ type OperacionFiltro = 'Todas' | TipoOperacion
 type Orden = 'sugerido' | 'precio-asc' | 'precio-desc' | 'superficie' | 'dormitorios'
 const tipos: TipoPropiedad[] = ['Casa', 'Apartamento', 'Terreno']
 const control = 'min-w-0 rounded-md border border-oliva-200 bg-white px-3 py-2 text-sm text-oliva-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oliva-700'
+type PageItem = number | 'ellipsis'
+
+function pageItems(pageCount: number, current: number): PageItem[] {
+  if (pageCount <= 7) return Array.from({ length: pageCount }, (_, index) => index + 1)
+  const numbers = [...new Set([1, pageCount, current - 1, current, current + 1])].filter((number) => number >= 1 && number <= pageCount).sort((a, b) => a - b)
+  const items: PageItem[] = []
+  let previous = 0
+  for (const number of numbers) {
+    if (number - previous === 2) items.push(previous + 1)
+    else if (number - previous > 2) items.push('ellipsis')
+    items.push(number)
+    previous = number
+  }
+  return items
+}
 
 export function Properties() {
+  const pageSize = 6
+  const [page, setPage] = useState(1)
   const [operacion, setOperacion] = useState<OperacionFiltro>('Todas')
   const [tipo, setTipo] = useState<TipoPropiedad | 'Todos'>('Todos')
   const [zona, setZona] = useState('Todas')
@@ -41,9 +58,22 @@ export function Properties() {
     })
   }, [operacion, tipo, zona, dormitorios, precioMin, precioMax, orden, puedeFiltrarPrecio])
 
+  const pageCount = Math.max(1, Math.ceil(filtradas.length / pageSize))
+  const firstVisible = filtradas.length ? (page - 1) * pageSize + 1 : 0
+  const lastVisible = Math.min(page * pageSize, filtradas.length)
+  const propiedadesPagina = filtradas.slice((page - 1) * pageSize, page * pageSize)
+
+  useEffect(() => {
+    setPage(1)
+  }, [operacion, tipo, zona, dormitorios, precioMin, precioMax, orden])
+
+  useEffect(() => {
+    setPage((current) => Math.min(current, pageCount))
+  }, [pageCount])
+
   function limpiarFiltros() {
     setOperacion('Todas'); setTipo('Todos'); setZona('Todas'); setDormitorios('Todos')
-    setPrecioMin(''); setPrecioMax(''); setOrden('sugerido')
+    setPrecioMin(''); setPrecioMax(''); setOrden('sugerido'); setPage(1)
   }
 
   return (
@@ -97,18 +127,27 @@ export function Properties() {
           </label>
         </div>
         <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-oliva-200 pt-3">
-          <p className="text-sm text-oliva-700" aria-live="polite">{filtradas.length} {filtradas.length === 1 ? 'resultado' : 'resultados'}</p>
+          <p className="text-sm text-oliva-700" aria-live="polite">{filtradas.length ? `Mostrando ${firstVisible}–${lastVisible} de ${filtradas.length}` : '0'} {filtradas.length === 1 ? 'resultado' : 'resultados'}</p>
           <button type="button" onClick={limpiarFiltros} className="rounded px-2 py-1 text-sm font-semibold text-oliva-700 underline underline-offset-4 hover:text-oliva-900 focus-visible:outline-2 focus-visible:outline-oliva-700">Limpiar filtros</button>
         </div>
       </div>
 
       {filtradas.length > 0 ? <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {filtradas.map((p) => <PropertyCard key={p.id} propiedad={p} onOpenDetail={() => setDetalle(p)} />)}
+        {propiedadesPagina.map((p) => <PropertyCard key={p.id} propiedad={p} onOpenDetail={() => setDetalle(p)} />)}
       </div> : <div className="rounded-xl border border-dashed border-oliva-300 bg-white px-5 py-10 text-center">
         <p className="font-heading text-xl text-oliva-900">No encontramos propiedades con esos filtros.</p>
         <p className="mt-2 text-sm text-oliva-600">Probá ampliar la zona o el rango de precio.</p>
         <button type="button" onClick={limpiarFiltros} className="mt-4 rounded-md bg-oliva-700 px-4 py-2 text-sm font-semibold text-white hover:bg-oliva-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oliva-700">Ver todas</button>
       </div>}
+      {pageCount > 1 && <nav className="mt-6 flex flex-wrap items-center justify-center gap-2" aria-label="Paginación de propiedades">
+        <button type="button" onClick={() => setPage((current) => Math.max(1, current - 1))} disabled={page === 1} aria-label="Página anterior" className="min-h-10 rounded-md border border-oliva-300 bg-white px-3 text-sm font-semibold text-oliva-800 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oliva-700">Anterior</button>
+        <div className="flex flex-wrap items-center justify-center gap-1" aria-label="Páginas">
+          {pageItems(pageCount, page).map((item, index) => item === 'ellipsis'
+            ? <span key={`ellipsis-${index}`} aria-hidden="true" className="px-1 text-sm text-oliva-700">…</span>
+            : <button key={item} type="button" onClick={() => setPage(item)} aria-label={`Página ${item}`} aria-current={page === item ? 'page' : undefined} className="min-h-10 min-w-10 rounded-md border border-oliva-300 px-3 text-sm font-semibold text-oliva-800 hover:bg-arena-100 aria-[current=page]:border-oliva-700 aria-[current=page]:bg-oliva-700 aria-[current=page]:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oliva-700">{item}</button>)}
+        </div>
+        <button type="button" onClick={() => setPage((current) => Math.min(pageCount, current + 1))} disabled={page === pageCount} aria-label="Página siguiente" className="min-h-10 rounded-md border border-oliva-300 bg-white px-3 text-sm font-semibold text-oliva-800 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oliva-700">Siguiente</button>
+      </nav>}
       {detalle && <PropertyDetailsDialog propiedad={detalle} onClose={() => setDetalle(null)} />}
     </section>
   )
